@@ -36,6 +36,8 @@ int main()
     /* example commands:
     unsigned char register = 0x10; // the device register you want to access
     char buf[10];
+
+    // using i2c:
     buf[0] = register;
     buf[1] = 0x33;
     buf[2] = 0x31;
@@ -48,5 +50,22 @@ int main()
     } else {
         // buf[0] contains the read byte
     }
+    
+    // using smbus (preferred)
+    int res;
+    res = i2c_smbus_read_word_data(file, register);
+    if (rev < 0) {
+        // error handling
+    } else {
+        // res contains the read word
+    }
+
+    res = i2c_smbus_write_word_data(file, register, buf+1);
+    if (rev < 0) {
+        // error handling
+    } else {
+        // res contains the read word
+    }
+
     end example commands */
 }
