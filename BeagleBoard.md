@@ -1,5 +1,4 @@
-# Documentation for hooking up the 
-# Sparkfun IMU Digital Combo Board 6 Degrees of Freedom ITG3200 / ADXL345
+# Documentation for hooking up the [Sparkfun IMU Digital Combo Board 6 Degrees of Freedom ITG3200 / ADXL345] (https://www.sparkfun.com/products/10121)
 
 Wiring
 ------
