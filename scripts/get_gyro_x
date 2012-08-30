@@ -1,0 +1,3 @@
+LSB=$(i2cget -y 3 0x68 0x1e)
+MSB=$(i2cget -y 3 0x68 0x1d)
+echo $MSB $LSB
