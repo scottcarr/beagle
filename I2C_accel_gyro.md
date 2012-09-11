@@ -1,4 +1,4 @@
-# Documentation for hooking up the [Sparkfun IMU Digital Combo Board 6 Degrees of Freedom ITG3200 / ADXL345] (https://www.sparkfun.com/products/10121)
+# Documentation for hooking up the [Sparkfun IMU Digital Combo Board 6 Degrees of Freedom ITG3200 / ADXL345](https://www.sparkfun.com/products/10121)
 
 Wiring
 ------
@@ -6,11 +6,17 @@ Wiring
 All the wiring is done with the beagle bone proto cape
 
 Breakout board pin / beagle bone  pin
+
 GND /  GND (on proto cape)
+ 
 3.3V / 3.3V (on proto cape)
+
 SCL / I2C2_SCL (P9 expansion header - pin 19)
+
 SDA / I2C2_SDA (P9 expansion header - pin 20)
+
 INT0 / no connect
+
 INT1 / no connect
 
 Software
