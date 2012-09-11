@@ -1,5 +1,4 @@
-My investigation into XBee
----------------------------
+#My investigation into XBee
 
 XBee is basically a "wireless serial bus".  It just gives you a way to transport ASCII characters.  It's up to you to define the protocol (which gives you the flexibility of designing any protocol you wish.)
 
@@ -24,9 +23,9 @@ Directly connecting the XBee to the beagle entails:
 
 I should be able to do those 3 pretty easily once the parts arrive.
 
-The remaining questions are:
+##The remaining questions are:
 
-*   How are the beagle's UARTs exposed in Angstrom Linux?  
-  * my guess would be they're under /dev and we can just talk to them via file read/write)
-*   What configuration (if any) do we need to do to get the UART to talk to the XBee?  
-  * bit rate, parity, etc
+###How are the beagle's UARTs exposed in Angstrom Linux?  
+My guess would be they're under /dev and we can just talk to them via file read/write)
+###What configuration (if any) do we need to do to get the UART to talk to the XBee?  
+bit rate, parity, etc
