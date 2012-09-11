@@ -4,7 +4,7 @@ XBee is basically a "wireless serial bus".  It just gives you a way to transport
 
 There are two ways of connecting the XBee to the beagle:
 
-1. USB, using the XBee explorer
+1. USB, using the [XBee explorer](https://www.sparkfun.com/products/8687)
 2. Directly to one of the beagle's available 
 [UARTs](http://en.wikipedia.org/wiki/Universal_asynchronous_receiver/transmitter)
 
