@@ -22,7 +22,7 @@ with no carriage return or line feed after.  It should respond 'OK'.  I'm not
 sure what happens if you send 3 plus signs in a row by accident, probably diaster
 happens.
 
-#Wireless programming
+##Wireless programming
 
 Wireless programming works just like regular programming if the XBee radios
 are setup correctly.  I followed 
