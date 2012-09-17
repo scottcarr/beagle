@@ -13,7 +13,7 @@ xbee_tips.html:
 
 fio.html:
 	cp fio.jpg $(DOC_DIR)fio.jpg
-	mardown fio.md > $(DOC_DIR)fio.html
+	markdown fio.md > $(DOC_DIR)fio.html
 
 uart.html:
 	markdown UART.md > $(DOC_DIR)uart.html
