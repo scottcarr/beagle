@@ -1,0 +1,10 @@
+echo 26 > /sys/kernel/debug/omap_mux/gpmc_wait0
+echo 6 > /sys/kernel/debug/omap_mux/gpmc_wpn
+
+echo "UART 4 (TX):"
+cat /sys/kernel/debug/omap_mux/gpmc_wait0
+echo
+
+echo "UART 4 (RX):"
+cat /sys/kernel/debug/omap_mux/gpmc_wpn
+echo
