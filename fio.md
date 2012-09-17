@@ -15,9 +15,6 @@ An example Arduino sketch to read the device IDs and send them out over XBee:
     #define accel_addr  (0x53)
     #define gyro_addr   (0x68)
 
-    #define success (0)
-    #define failure (0)
-
     void setup() {
         Serial.begin(57600);
         Wire.begin();
