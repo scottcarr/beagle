@@ -10,7 +10,8 @@ Communicating over the XBee is just done with the normal
 [serial library](http://arduino.cc/en/Reference/serial).
 
 An example Arduino sketch to read the device IDs and send them out over XBee:
-#include <Wire.h>
+
+    #include <Wire.h>
 
     #define accel_addr  (0x53)
     #define gyro_addr   (0x68)
