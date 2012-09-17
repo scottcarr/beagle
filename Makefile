@@ -10,6 +10,7 @@ xbee.html:
 
 xbee_tips.html:
 	markdown xbee_tutorial.md > $(DOC_DIR)xbee_tips.html
+	cp beaglexbee.jpg $(DOC_DIR)beaglexbee.jpg
 
 uart.html:
 	markdown UART.md > $(DOC_DIR)uart.html
