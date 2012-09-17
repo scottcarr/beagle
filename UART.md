@@ -121,3 +121,7 @@ Here is how to do the whole thing in python:
     time.sleep(1)
     print ser.read() # should see 'O'
     print ser.read() # should see 'K'
+
+##Other resources:
+
+[BeagleBone serial ports and Xbees](http://www.jerome-bernard.com/blog/2012/06/04/beaglebone-serial-ports-and-xbees/)
