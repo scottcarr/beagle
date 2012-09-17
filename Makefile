@@ -10,10 +10,14 @@ xbee.html:
 
 xbee_tips.html:
 	markdown xbee_tutorial.md > $(DOC_DIR)xbee_tips.html
-	cp beaglexbee.jpg $(DOC_DIR)beaglexbee.jpg
+
+fio.html:
+	cp fio.jpg $(DOC_DIR)fio.jpg
+	mardown fio.md > $(DOC_DIR)fio.html
 
 uart.html:
 	markdown UART.md > $(DOC_DIR)uart.html
+	cp beaglexbee.jpg $(DOC_DIR)beaglexbee.jpg
 
 clean:
 	rm $(DOC_DIR)xbee.html $(DOC_DIR)I2C_accel_gyro_combo.html
