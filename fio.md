@@ -2,12 +2,12 @@
 
 The Fio uses analog pins 4 and 5 for I2C. A4 is SDA and A5 is SCL.
 
-[Arduino Fio with combo board][fio.jpg]
+![Arduino Fio with combo board](fio.jpg)
 
 3.3V and GND come from their respective pins on the Fio.
 
 Communicating over the XBee is just done with the normal 
-![serial library](http://arduino.cc/en/Reference/serial).
+[serial library](http://arduino.cc/en/Reference/serial).
 
 An example Arduino sketch to read the device IDs and send them out over XBee:
 #include <Wire.h>
