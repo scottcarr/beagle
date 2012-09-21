@@ -40,7 +40,7 @@ For example, the command:
         <td>0x2a</td>
         <td>0x11</td>
     </tr>
-</table
+</table>
 
 Yields 01 53 2a 11 0A
 
