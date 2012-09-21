@@ -21,7 +21,7 @@ interface onto XBee. For that, we need two commands, read and write.
         <td>Address of register (on the chip) to write</td>
         <td>Value to write</td>
     </tr>
-<\table>
+</table>
 
 Each field is a byte.  They are sent sequentially and followed by a carriage
 return (0x0D in ASCII).
