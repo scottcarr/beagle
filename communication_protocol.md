@@ -61,7 +61,7 @@ Support for multi-byte writes may be added as needed.
         <td>0x2a</td>
         <td>0x01</td>
     </tr>
-<\table>
+</table>
 
 Again, these fields are bytes and are followed by a carriage return.
 
@@ -80,7 +80,7 @@ Example command:
         <td>0x2a</td>
         <td>0x01</td>
     </tr>
-<\table>
+</table>
 
 Yields 02 53 2a 11 0A
 
