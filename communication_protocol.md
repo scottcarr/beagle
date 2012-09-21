@@ -24,7 +24,7 @@ interface onto XBee. For that, we need two commands, read and write.
 </table>
 
 Each field is a byte.  They are sent sequentially and followed by a carriage
-return (0x0D in ASCII).
+return (0x0A in ASCII).
 
 For example, the command:
 <table>
