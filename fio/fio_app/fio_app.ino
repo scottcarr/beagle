@@ -4,6 +4,8 @@
 #define CMD_ID_WRITE    (0x01)
 #define CMD_ID_READ     (0x02)
 
+#define INTERRUPT_PIN_D2    (0) // for whatever reason, D2 maps to int 0
+
 char readFromI2C(char chip_addr, char reg_addr, char num, char* buff) 
 {
     Wire.beginTransmission(chip_addr);
@@ -19,10 +21,16 @@ char readFromI2C(char chip_addr, char reg_addr, char num, char* buff)
     Wire.endTransmission();
 }
 
+void handleInterrupt()
+{
+    Serial.write("stop interrupting me!\n");
+}
+
 void setup()
 {
     Serial.begin(57600);
     Wire.begin();
+    attachInterrupt(INTERRUPT_PIN_D2, handleInterrupt, RISING); 
 
 }
 
