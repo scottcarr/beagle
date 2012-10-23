@@ -6,7 +6,15 @@
 
 #define INTERRUPT_PIN_D2    (0) // for whatever reason, D2 maps to int 0
 
-char readFromI2C(char chip_addr, char reg_addr, char num, char* buff) 
+void writeToI2C(char chip_addr, char reg_addr, char value)
+{
+    Wire.beginTransmission(chip_addr);
+    Wire.write(reg_addr);
+    Wire.write(value);
+    Wire.endTransmission();
+}
+
+void readFromI2C(char chip_addr, char reg_addr, char num, char* buff) 
 {
     Wire.beginTransmission(chip_addr);
     Wire.write(reg_addr);
@@ -46,7 +54,7 @@ char isPacketAvailable()
 char isValidPacket(char cmd_id, char chip_addr, char reg_addr, char num_read)
 {
     // validate cmd_id
-    if ( (cmd_id == CMD_ID_READ) ||  (cmd_id == CMD_ID_READ) )  {
+    if ( (cmd_id == CMD_ID_READ) ||  (cmd_id == CMD_ID_WRITE) )  {
         // good cmd_id
     } else {
         // bad cmd_id
@@ -99,7 +107,12 @@ void respondToPacket()
             }
             break;
         case CMD_ID_WRITE:
-            Serial.println("OK");
+            if(isValidPacket(cmd_id, chip_addr, reg_addr, 1)) { 
+                // above: set num_read to 1 bc write always writes 1
+                char value = num_read;
+                writeToI2C(chip_addr, reg_addr, value);
+                Serial.println("OK");
+            }
             break;
         default:
             ; //unhandled command id

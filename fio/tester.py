@@ -10,9 +10,21 @@ class FioComm:
         self.CARRIAGE_RETURN = 0x0A
         self.RESPONSE_OK = "OK\r\n"
         self.MPU6050_ADDR = 0x68
+
+        # registers
         self.MPU6050_REG_WHOAMI = 0x75
         self.MPU6050_REG_FIFO_EN = 0x23
         self.MPU6050_REG_INT_ENABLE = 0x38
+        self.MPU6050_REG_GYRO_XOUT_H = 0x43
+        self.MPU6050_REG_ACCEL_XOUT_H = 0x3B
+        self.MPU6050_REG_SMPLRT_DIV = 0x19
+        self.MPU6050_REG_CONFIG = 0x1A
+        self.MPU6050_REG_GYRO_CONFIG = 0x1B
+        self.MPU6050_REG_ACCEL_CONFIG = 0x1C
+        self.MPU6050_REG_PWR_MGMT_1 = 0x6B
+        self.MPU6050_REG_PWR_MGMT_2 = 0x6C
+
+        # register values
         self.MPU6050_INT_ENABLE_FIFO_OFLOW = 0x10
 
         USB_FILE = '/dev/tty.usbserial-AE01A6ZM'
@@ -70,21 +82,85 @@ class FioComm:
         return self.writeI2C(self.MPU6050_ADDR, 0x01, 0x00)
 
     def read_whoami(self):
-        return self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_WHOAMI, 1) 
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_WHOAMI, 1) 
+        return ord(resp[0])
 
     def enable_int_fifo_oflow(self):
         return self.writeI2C(self.MPU6050_ADDR, self.MPU6050_REG_INT_ENABLE,\
                 self.MPU6050_INT_ENABLE_FIFO_OFLOW)
+
+    def read_gyro(self):
+        return self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_XOUT_H, 6)
+
+    def read_accel(self):
+        return self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_XOUT_H, 6)
+
+    def read_sample_rate(self):
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_SMPLRT_DIV, 1)
+        return ord(resp[0])
+
+    def read_config(self):
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_CONFIG, 1)
+        return ord(resp[0])
+
+    def read_gyro_config(self):
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_CONFIG, 1)
+        return ord(resp[0])
+
+    def read_accel_config(self):
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_CONFIG, 1)
+        return ord(resp[0])
+
+    def read_fifo_en(self):
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_FIFO_EN, 1)
+        return ord(resp[0])
+
+    def read_pwr_mgmt_1(self):
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_PWR_MGMT_1, 1)
+        return ord(resp[0])
+
+    def read_pwr_mgmt_2(self):
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_PWR_MGMT_2, 1)
+        return ord(resp[0])
+
+    def print_reg_contents(self):
+        print "Who am i: {0}".format(hex(fm.read_whoami()))
+        print "Sample rate: {0}".format(hex(fm.read_sample_rate()))
+        print "Config: {0}".format(hex(fm.read_config()))
+        print "Gyro config: {0}".format(hex(fm.read_gyro_config()))
+        print "Accel config: {0}".format(hex(fm.read_accel_config()))
+        print "FIFO enable: {0}".format(hex(fm.read_fifo_en()))
+        print "Power management 1: {0}".format(hex(fm.read_pwr_mgmt_1()))
+        print "Power management 2: {0}".format(hex(fm.read_pwr_mgmt_2()))
+
+    def wake_up(self):
+        return self.writeI2C(self.MPU6050_ADDR, self.MPU6050_REG_PWR_MGMT_1, 0)
 
     def close(self):
         self.ser.close()
 
 if __name__ == '__main__':
     fm = FioComm()
-    print hex(ord(fm.read_whoami()[0]))
-    print fm.enable_fifo(XG_FIFO_EN = True, YG_FIFO_EN = True,\
-            ZG_FIFO_EN = True, ACCEL_FIFO_EN = True)
-    print fm.enable_int_fifo_oflow()
-    while True:
-        print fm.ser.read()
-
+    #print fm.enable_fifo(XG_FIFO_EN = True, YG_FIFO_EN = True,\
+    #        ZG_FIFO_EN = True, ACCEL_FIFO_EN = True)
+    #print fm.enable_int_fifo_oflow()
+    #while True:
+    #    print fm.ser.read()
+    #g =  fm.read_gyro()
+    #gx = ord(g[0])*2**16 + ord(g[1])
+    #gy = ord(g[2])*2**16 + ord(g[3])
+    #gz = ord(g[4])*2**16 + ord(g[5])
+    #print "gyro X: {0}".format(hex(gx))
+    #print "gyro Y: {0}".format(hex(gy))
+    #print "gyro Z: {0}".format(hex(gz))
+    #a = fm.read_accel()
+    #ax = ord(a[0])*2**16 + ord(a[1])
+    #ay = ord(a[2])*2**16 + ord(a[3])
+    #az = ord(a[4])*2**16 + ord(a[5])
+    #print "accel X: {0}".format(hex(ax))
+    #print "accel Y: {0}".format(hex(ay))
+    #print "accel Z: {0}".format(hex(az))
+    #print g
+    #print a
+    fm.print_reg_contents()
+    print fm.wake_up()
