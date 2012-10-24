@@ -19,5 +19,11 @@ uart.html:
 	markdown UART.md > $(DOC_DIR)uart.html
 	cp beaglexbee.jpg $(DOC_DIR)beaglexbee.jpg
 
+sd_logger_app.html:
+	markdown sd_logger_app.md > $(DOC_DIR)sd_logger_app.html
+
+sd.html:
+	markdown sd.md > $(DOC_DIR)sd.html
+
 clean:
 	rm $(DOC_DIR)xbee.html $(DOC_DIR)I2C_accel_gyro_combo.html

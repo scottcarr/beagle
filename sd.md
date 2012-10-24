@@ -14,7 +14,7 @@ The Fio pins are labeled on the board.  All of these pins are digital.
 <tr>    <td>GND</td>    <td>3</td>    <td>Ground</td> </tr>
 </table>
 
-The Arduino has an [SD card library](http://www.interfacebus.com/Secure_Digital_Card_Pinout.html)
+The Arduino has an [SD card library](http://arduino.cc/en/Reference/SD)
 
 The SD card should be formated FAT16 or FAT32.
 
