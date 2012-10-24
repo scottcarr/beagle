@@ -1,5 +1,10 @@
 #Fio SD Logger application
 
+I haven't got the FIFO / interrupt working yet.  At its fastest sampling rate,
+the MPU6050 collects faster than the Fio can get the data I think
+
+Includes and constants:
+
     #include <Wire.h>
     #include <SD.h>
 
@@ -10,6 +15,8 @@
     #define MPU6050_ADDR    (0x68)
 
     #define INTERRUPT_PIN_D2    (0) // for whatever reason, D2 maps to int 0
+
+Some of the register addresses:
 
     // register addr
     #define MPU6050_REG_USER_CTRL       (0x6A)
@@ -38,6 +45,8 @@
     #define MPU6050_REG_FIFO_COUNT_L    (0x73)
     #define MPU6050_REG_FIFO_R_W        (0x74)
 
+Values to put in the registers.  Not currently used.
+
     // register values
     #define MPU6050_INT_ENABLE_FIFO_OFLOW   (0x10)
     #define MPU6050_INT_DATA_RDY            (0x01)
@@ -51,6 +60,7 @@
     int samples = 0;
     File data;
 
+I2C functions:
     void writeToI2C(char chip_addr, char reg_addr, unsigned char value)
     {
         Wire.beginTransmission(chip_addr);
@@ -74,10 +84,14 @@
         Wire.endTransmission();
     }
 
+The MPU6050 is asleep by default
+
     void wake_up()
     {
         writeToI2C(MPU6050_ADDR, MPU6050_REG_PWR_MGMT_1, 0);
     }
+
+Initialization:
 
     void setup()
     {
@@ -99,6 +113,8 @@
         data = SD.open("data.csv", FILE_WRITE);
 
     }
+
+This is called as fast as possible:
 
     void collect_sample()
     {
