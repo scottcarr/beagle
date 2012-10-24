@@ -1,6 +1,7 @@
 DOC_DIR = /home/wind-wiki/htdocs/doc/
 
-all: I2C_accel_gyro_combo.html xbee.html xbee_tips.html uart.html fio.html
+all: I2C_accel_gyro_combo.html xbee.html xbee_tips.html uart.html fio.html \
+	sd.html sd_logger_app.html
 
 I2C_accel_gyro_combo.html:
 	markdown I2C_accel_gyro.md > $(DOC_DIR)I2C_accel_gyro_combo.html
