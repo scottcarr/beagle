@@ -1,5 +1,10 @@
 #Fio SD Logger application
 
+Example data:
+
+<img src="accel.png">
+<img src="gyro.png">
+
 I haven't got the FIFO / interrupt working yet.  At its fastest sampling rate,
 the MPU6050 collects faster than the Fio can get the data I think
 

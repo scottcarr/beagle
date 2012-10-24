@@ -22,6 +22,8 @@ uart.html:
 
 sd_logger_app.html:
 	markdown sd_logger.md > $(DOC_DIR)sd_logger_app.html
+	cp accel.png $(DOC_DIR)accel.png
+	cp gyro.png $(DOC_DIR)gyro.png
 
 sd.html:
 	markdown sd.md > $(DOC_DIR)sd.html
