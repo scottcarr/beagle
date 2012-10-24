@@ -1,5 +1,6 @@
 import serial
 import time
+import struct
 
 class FioComm:
     def __init__(self):
@@ -10,13 +11,25 @@ class FioComm:
         self.CARRIAGE_RETURN = 0x0A
         self.RESPONSE_OK = "OK\r\n"
         self.MPU6050_ADDR = 0x68
+        self.BITS_PER_G = 16384.0
+        self.BITS_PER_DEG_PER_S = 131.0
 
         # registers
         self.MPU6050_REG_WHOAMI = 0x75
         self.MPU6050_REG_FIFO_EN = 0x23
         self.MPU6050_REG_INT_ENABLE = 0x38
         self.MPU6050_REG_GYRO_XOUT_H = 0x43
+        self.MPU6050_REG_GYRO_XOUT_L = 0x44
+        self.MPU6050_REG_GYRO_YOUT_H = 0x45
+        self.MPU6050_REG_GYRO_YOUT_L = 0x46
+        self.MPU6050_REG_GYRO_ZOUT_H = 0x47
+        self.MPU6050_REG_GYRO_ZOUT_L = 0x48
         self.MPU6050_REG_ACCEL_XOUT_H = 0x3B
+        self.MPU6050_REG_ACCEL_XOUT_L = 0x3C
+        self.MPU6050_REG_ACCEL_YOUT_H = 0x3D
+        self.MPU6050_REG_ACCEL_YOUT_L = 0x3E
+        self.MPU6050_REG_ACCEL_ZOUT_H = 0x3F
+        self.MPU6050_REG_ACCEL_ZOUT_L = 0x40
         self.MPU6050_REG_SMPLRT_DIV = 0x19
         self.MPU6050_REG_CONFIG = 0x1A
         self.MPU6050_REG_GYRO_CONFIG = 0x1B
@@ -90,10 +103,46 @@ class FioComm:
                 self.MPU6050_INT_ENABLE_FIFO_OFLOW)
 
     def read_gyro(self):
-        return self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_XOUT_H, 6)
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_XOUT_H, 1)
+        xh = ord(resp[0])
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_XOUT_L, 1)
+        xl = ord(resp[0])
+        x = self.convert_from_twos_comp(xh, xl) / self.BITS_PER_DEG_PER_S
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_YOUT_H, 1)
+        yh = ord(resp[0])
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_YOUT_L, 1)
+        yl = ord(resp[0])
+        y = self.convert_from_twos_comp(yh, yl) / self.BITS_PER_DEG_PER_S
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_ZOUT_H, 1)
+        zh = ord(resp[0])
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_GYRO_ZOUT_L, 1)
+        zl = ord(resp[0])
+        z = self.convert_from_twos_comp(zh, zl) / self.BITS_PER_DEG_PER_S
+        return x, y, z
+
+    def convert_from_twos_comp(self, hi, lo):
+        val = hi*2**8 + lo
+        if hi > 127:
+            val = val - 2**16
+        return val
 
     def read_accel(self):
-        return self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_XOUT_H, 6)
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_XOUT_H, 1)
+        xh = ord(resp[0])
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_XOUT_L, 1)
+        xl = ord(resp[0])
+        x = self.convert_from_twos_comp(xh, xl) / self.BITS_PER_G
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_YOUT_H, 1)
+        yh = ord(resp[0])
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_YOUT_L, 1)
+        yl = ord(resp[0])
+        y = self.convert_from_twos_comp(yh, yl) / self.BITS_PER_G
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_ZOUT_H, 1)
+        zh = ord(resp[0])
+        resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_ACCEL_ZOUT_L, 1)
+        zl = ord(resp[0])
+        z = self.convert_from_twos_comp(zh, zl) / self.BITS_PER_G
+        return x, y, z
 
     def read_sample_rate(self):
         resp = self.readI2C(self.MPU6050_ADDR, self.MPU6050_REG_SMPLRT_DIV, 1)
@@ -162,5 +211,8 @@ if __name__ == '__main__':
     #print "accel Z: {0}".format(hex(az))
     #print g
     #print a
-    fm.print_reg_contents()
-    print fm.wake_up()
+    #fm.print_reg_contents()
+    #print fm.wake_up()
+    x, y, z = fm.read_accel()
+    #x, y, z = fm.read_gyro()
+    print x, y, z
