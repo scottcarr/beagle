@@ -61,6 +61,7 @@ Values to put in the registers.  Not currently used.
     File data;
 
 I2C functions:
+
     void writeToI2C(char chip_addr, char reg_addr, unsigned char value)
     {
         Wire.beginTransmission(chip_addr);
