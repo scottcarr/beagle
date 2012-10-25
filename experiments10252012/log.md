@@ -14,10 +14,12 @@ The MPU6050 is mounted:
 
 (I don't know the appropriate terms, so here is my best approximation)
 
-Accelerometer:
-Positive Z is into the wind
-Positive Y is towards the blade tip
-Positive X is towards the blade edge
+<table>
+<tr>Accelerometer<tr>
+<tr><td>Axis></td><td>description</td></tr>
+<tr><td>Positive Z</td><td>into the wind</td></tr>
+<tr><td>Positive Y</td><td>towards the blade tip</td></tr>
+<tr><td>Positive X</td><td>towards the blade edge</td></tr>
 
 Gyro:
 Z is the rotation in the same plane as the blades rotate
