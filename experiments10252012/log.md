@@ -25,7 +25,7 @@ Accelerometer
 Gyro
 <table>
 <tr><td>Z</td><td>rotation in the same plane as the blades rotate</td></tr>
-<tr><td>X</td><td>rotation is rotating in the same plane as rotating around the post</td></tr>
+<tr><td>X</td><td>rotation around an axis perpendicular to the blade</td></tr>
 <tr><td>Y</td><td>rotation around the blade axis</td></tr>
 </table>
 
