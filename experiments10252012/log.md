@@ -21,7 +21,7 @@ I started the program and then spun the turbine blades by hand.
 
 The Fio collected 1000 data points from the Accelerometer and Gyro (X,Y,Z for both).
 
-<img src="https://raw.github.com/scottcarr/beagle/master/experiments10252012/accel1.png"
+<img src="https://raw.github.com/scottcarr/beagle/master/experiments10252012/accel1.png">
 <img src="https://raw.github.com/scottcarr/beagle/master/experiments10252012/gyro1.png">
 
 [Raw Data file 1](https://raw.github.com/scottcarr/beagle/master/experiments10252012/DATA.CSV)
