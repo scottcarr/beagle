@@ -55,3 +55,16 @@ The Fio collected 1000 data points from the Accelerometer and Gyro (X,Y,Z for bo
 [Raw Data file 1](https://raw.github.com/scottcarr/beagle/master/experiments10252012/DATA.CSV)
 
 Note: to read the data, you need to use [data_reader.py](https://github.com/scottcarr/beagle/blob/master/fio/data_reader.py)
+##Next steps
+
+Add timing information to the data logger app.  It won't be able to measure
+wall time but it can measure the number of clock cycles between samples
+
+Attach the wireless sensor setup to a blade with the wired sensor and do
+a comparison. 
+
+Make better wiring.  The current idea is to have the Fio in the tip of the
+blade hub and run a long wire out to the sensor.  This keeps the amount of
+weight and objects on the blades to a minimum.  The Fio, SD card, battery, etc.
+could be in the blade hub nose area.  A concern would be if the Xbee can
+reliably get a signal in there.
