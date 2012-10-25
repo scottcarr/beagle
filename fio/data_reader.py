@@ -4,6 +4,8 @@ from pylab import *
 BITS_PER_G = 16384.0
 BITS_PER_DEG_PER_S = 131.0
 
+DATAFILE = "../experiments10252012/1.CSV"
+
 def convert_from_twos_comp(hi, lo):
     val = hi*2**8 + lo
     if hi > 127:
@@ -11,7 +13,7 @@ def convert_from_twos_comp(hi, lo):
     return val
 
 def convert_to_ints():
-    f = open("DATA.CSV")
+    f = open(DATAFILE)
     int_form = []
     for line in f:
         for part in line.split(','):
