@@ -12,7 +12,7 @@ turbine blade.
 
 I connected the Xbee explorer and programmer radio to my laptop.
 
-<img src="laptop">
+<img src="https://github.com/scottcarr/beagle/raw/master/experiments10252012/laptop.JPG">
 
 I programmed the Fio [SD logger app](http://wind.cs.purdue.edu/doc/sd_logger_app.html) 
  using the Arduino application.
@@ -22,4 +22,4 @@ I started the program and then spun the turbine blades by hand.
 The Fio collected 1000 data points from the Accelerometer and Gyro (X,Y,Z for both).
 
 <img src="accel1.png"
-<img src="gyro1.png"
+<img src="gyro1.png">
