@@ -28,5 +28,8 @@ sd_logger_app.html:
 sd.html:
 	markdown sd.md > $(DOC_DIR)sd.html
 
+experiment10252012.html:
+	markdown experiment10252012/log.md > $(DOC_DIR)experiment10252012.html
+
 clean:
 	rm $(DOC_DIR)xbee.html $(DOC_DIR)I2C_accel_gyro_combo.html
