@@ -23,3 +23,7 @@ The Fio collected 1000 data points from the Accelerometer and Gyro (X,Y,Z for bo
 
 <img src="https://raw.github.com/scottcarr/beagle/master/experiments10252012/accel1.png"
 <img src="https://raw.github.com/scottcarr/beagle/master/experiments10252012/gyro1.png">
+
+[Raw Data file 1](https://raw.github.com/scottcarr/beagle/master/experiments10252012/DATA.CSV)
+
+Note: to read the data, you need to use [data_reader.py](https://github.com/scottcarr/beagle/blob/master/fio/data_reader.py)
