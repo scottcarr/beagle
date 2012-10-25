@@ -14,18 +14,20 @@ The MPU6050 is mounted:
 
 (I don't know the appropriate terms, so here is my best approximation)
 
+Accelerometer
 <table>
-<tr><td>Accelerometer</td></tr>
-<tr><td>Axis></td><td>description</td></tr>
+<tr><td>Axis</td><td>description</td></tr>
 <tr><td>Positive Z</td><td>into the wind</td></tr>
 <tr><td>Positive Y</td><td>towards the blade tip</td></tr>
 <tr><td>Positive X</td><td>towards the blade edge</td></tr>
 </table>
 
-Gyro:
-Z is the rotation in the same plane as the blades rotate
-X rotation is rotating in the same plane as rotating around the post
-Y is rotating around the blade axis
+Gyro
+<table>
+<tr><td>Z</td><td>rotation in the same plane as the blades rotate</td></tr>
+<tr><td>X</td><td>rotation is rotating in the same plane as rotating around the post</td></tr>
+<tr><td>Y</td><td>rotation around the blade axis</td></tr>
+</table>
 
 I connected the Xbee explorer and programmer radio to my laptop.
 
