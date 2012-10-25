@@ -10,14 +10,37 @@ turbine blade.
 
 <img src="https://github.com/scottcarr/beagle/raw/master/experiments10252012/tape.JPG">
 
+The MPU6050 is mounted:
+
+(I don't know the appropriate terms, so here is my best approximation)
+
+Accelerometer:
+Positive Z is into the wind
+Positive Y is towards the blade tip
+Positive X is towards the blade edge
+
+Gyro:
+Z is the rotation in the same plane as the blades rotate
+X rotation is rotating in the same plane as rotating around the post
+Y is rotating around the blade axis
+
 I connected the Xbee explorer and programmer radio to my laptop.
 
 <img src="https://github.com/scottcarr/beagle/raw/master/experiments10252012/laptop.JPG">
 
-I programmed the Fio [SD logger app](http://wind.cs.purdue.edu/doc/sd_logger_app.html) 
- using the Arduino application.
 
-I started the program and then spun the turbine blades by hand.
+I programmed the Fio [SD logger app](http://wind.cs.purdue.edu/doc/sd_logger_app.html) 
+ using the Arduino application.  The programming was done over the Xbee radio
+wirelessly.  The laptop was about 30 feet from the turbine.
+
+<img src="https://github.com/scottcarr/beagle/raw/master/experiments10252012/distance.JPG">
+
+Wireless programming from this distance (and through the wind tunnel walls)
+ only worked intermitently.  The first time I tried programming it worked.
+The second time I had to go into the wind tunnel.  The reliability and
+distance capability of the Xbee radios is an ongoing concern/issue.
+
+To do a data collection, I started the program and then spun the turbine blades by hand.
 
 The Fio collected 1000 data points from the Accelerometer and Gyro (X,Y,Z for both).
 
