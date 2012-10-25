@@ -15,7 +15,7 @@ The MPU6050 is mounted:
 (I don't know the appropriate terms, so here is my best approximation)
 
 <table>
-<tr>Accelerometer<tr>
+<tr><td>Accelerometer</td></tr>
 <tr><td>Axis></td><td>description</td></tr>
 <tr><td>Positive Z</td><td>into the wind</td></tr>
 <tr><td>Positive Y</td><td>towards the blade tip</td></tr>
