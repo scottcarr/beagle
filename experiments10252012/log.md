@@ -8,7 +8,7 @@ First, I setup one Xbee radio as a programmer and one as the programee.  See
 Then, I attached the Fio, battery, MPU6050, and SD card to the uninstrumented
 turbine blade.
 
-<img src="tape.jpg">
+<img src="https://github.com/scottcarr/beagle/raw/master/experiments10252012/tape.JPG">
 
 I connected the Xbee explorer and programmer radio to my laptop.
 
