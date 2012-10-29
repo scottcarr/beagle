@@ -45,9 +45,6 @@
 
 #define N_SAMPLES (1000)
 
-//bool isr = false;
-//unsigned char buff[1024];
-//unsigned int n;
 unsigned char hi,lo;
 int samples = 0;
 File data;
@@ -139,6 +136,9 @@ void setup()
 
 void collect_sample()
 {
+    data.print(millis());
+    data.print(',');
+
     readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_H, 1, &hi);
     readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_L, 1, &lo);
     data.print(hi, HEX);
@@ -182,16 +182,21 @@ void collect_sample()
     data.print('\n');
 }
 
+void do_collection()
+{
+    for(samples = 0; samples < N_SAMPLES; samples++) {
+        collect_sample();
+    }
+    data.close();
+    Serial.println("done.");
+}
+
 void loop()
 {
-    if (samples < N_SAMPLES) {
-        collect_sample();
-        samples++;
-    } else if (samples == N_SAMPLES) {
-        data.close();
-        samples++;
-        Serial.println("done.");
-    } else {
-        // do nothing
-    }
+    while(!Serial.available());
+    Serial.println("starting collection");
+    Serial.read();
+    do_collection();
+    //Serial.println("hello world");
+    //delay(500);
 }
