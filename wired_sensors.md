@@ -13,9 +13,10 @@ I couldn't find a part number for the anemometer.
 If we wanted a reproduce the same setup on the other turbine we'd need:
 
 A power suppy 8-32V with enough current to drive all the sensors.  They 
-are all pretty low current, so that shouldn't be a big problem.
+are all pretty low current, so that shouldn't be a big problem.  Actually,
+I bet the original power supply could drive the sensors for both.
 
-A circuit for the tach to switch.  It's a PNP (or NPN) transistor.
+A circuit (load) for the tach to switch.  It's a PNP (or NPN) transistor.
 
 How is the output power being measured?  There has been talk of changing/improving
 the power measurement, but I'm not sure how high priority that is.
