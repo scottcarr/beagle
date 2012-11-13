@@ -43,11 +43,15 @@
 #define MPU6050_FIFO_EN                 (0x40)
 
 
-#define N_SAMPLES (1000)
+#define N_SAMPLES       (1000)
+#define BUFF_SIZE       (512)
 
-unsigned char hi,lo;
-int samples = 0;
 File data;
+unsigned int samples = 0;
+unsigned int total_samples = 0;
+unsigned char buff[BUFF_SIZE];
+unsigned char *buff_ptr;
+unsigned long mill;
 
 void writeToI2C(char chip_addr, char reg_addr, unsigned char value)
 {
@@ -108,12 +112,13 @@ void setup()
             Serial.println("SD card failed.");
         }
     } else {
+        if (SD.exists("data.bin")) {
+            SD.remove("data.bin");
+        }
+        data = SD.open("data.bin", FILE_WRITE);
         Serial.println("SD card initialized.");
     }
-    if (SD.exists("data.csv")) {
-        SD.remove("data.csv");
-    }
-    data = SD.open("data.csv", FILE_WRITE);
+    buff_ptr = buff;
     //enableFIFO();
     //enableINT();
 
@@ -136,55 +141,93 @@ void setup()
 
 void collect_sample()
 {
-    data.print(millis());
-    data.print(',');
+    //data.print(millis());
+    //data.print(',');
 
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_H, 1, &hi);
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_L, 1, &lo);
-    data.print(hi, HEX);
-    data.print(' ');
-    data.print(lo, HEX);
-    data.print(',');
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_H, 1, &hi);
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_L, 1, &lo);
+    //data.print(hi, HEX);
+    //data.print(' ');
+    //data.print(lo, HEX);
+    //data.print(',');
 
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_YOUT_H, 1, &hi);
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_YOUT_L, 1, &lo);
-    data.print(hi, HEX);
-    data.print(' ');
-    data.print(lo, HEX);
-    data.print(',');
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_YOUT_H, 1, &hi);
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_YOUT_L, 1, &lo);
+    //data.print(hi, HEX);
+    //data.print(' ');
+    //data.print(lo, HEX);
+    //data.print(',');
 
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_ZOUT_H, 1, &hi);
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_ZOUT_L, 1, &lo);
-    data.print(hi, HEX);
-    data.print(' ');
-    data.print(lo, HEX);
-    data.print(',');
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_ZOUT_H, 1, &hi);
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_ZOUT_L, 1, &lo);
+    //data.print(hi, HEX);
+    //data.print(' ');
+    //data.print(lo, HEX);
+    //data.print(',');
 
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_XOUT_H, 1, &hi);
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_XOUT_L, 1, &lo);
-    data.print(hi, HEX);
-    data.print(' ');
-    data.print(lo, HEX);
-    data.print(',');
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_XOUT_H, 1, &hi);
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_XOUT_L, 1, &lo);
+    //data.print(hi, HEX);
+    //data.print(' ');
+    //data.print(lo, HEX);
+    //data.print(',');
 
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_YOUT_H, 1, &hi);
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_YOUT_L, 1, &lo);
-    data.print(hi, HEX);
-    data.print(' ');
-    data.print(lo, HEX);
-    data.print(',');
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_YOUT_H, 1, &hi);
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_YOUT_L, 1, &lo);
+    //data.print(hi, HEX);
+    //data.print(' ');
+    //data.print(lo, HEX);
+    //data.print(',');
 
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_ZOUT_H, 1, &hi);
-    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_ZOUT_L, 1, &lo);
-    data.print(hi, HEX);
-    data.print(' ');
-    data.print(lo, HEX);
-    data.print('\n');
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_ZOUT_H, 1, &hi);
+    //readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_ZOUT_L, 1, &lo);
+    //data.print(hi, HEX);
+    //data.print(' ');
+    //data.print(lo, HEX);
+    //data.print('\n');
+
+    mill = millis();
+
+    memcpy(buff_ptr, &mill, 4);
+    buff_ptr += 4;
+
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_H, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_XOUT_L, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_YOUT_H, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_YOUT_L, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_ZOUT_H, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_ACCEL_ZOUT_L, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_XOUT_H, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_XOUT_L, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_YOUT_H, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_YOUT_L, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_ZOUT_H, 1, buff_ptr);
+    buff_ptr++;
+    readFromI2C(MPU6050_ADDR, MPU6050_REG_GYRO_ZOUT_L, 1, buff_ptr);
+    buff_ptr++;
+
+    samples++;
+
+    if (samples == 32) {
+        data.write(buff, BUFF_SIZE);
+        samples = 0;
+        buff_ptr = buff;
+    }
 }
 
 void do_collection()
 {
-    for(samples = 0; samples < N_SAMPLES; samples++) {
+    for(total_samples = 0; total_samples < N_SAMPLES; total_samples++) {
         collect_sample();
     }
     data.close();
@@ -197,6 +240,4 @@ void loop()
     Serial.println("starting collection");
     Serial.read();
     do_collection();
-    //Serial.println("hello world");
-    //delay(500);
 }

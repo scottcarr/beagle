@@ -4,7 +4,8 @@ from pylab import *
 BITS_PER_G = 16384.0
 BITS_PER_DEG_PER_S = 131.0
 
-DATAFILE = "../experiments10252012/1.CSV"
+#DATAFILE = "../experiments10252012/1.CSV"
+DATAFILE = "DATA.CSV"
 
 def convert_from_twos_comp(hi, lo):
     val = hi*2**8 + lo
@@ -16,12 +17,18 @@ def convert_to_ints():
     f = open(DATAFILE)
     int_form = []
     for line in f:
+        isFirst = True
         for part in line.split(','):
-            hi, lo = part.split(' ')
-            hi = int(hi, 16)
-            lo = int(lo, 16)
-            #print convert_from_twos_comp(hi, lo)
-            int_form.append(convert_from_twos_comp(hi, lo))
+            if isFirst:
+                # TODO add time
+                pass
+                isFirst = False
+            else:
+                hi, lo = part.split(' ')
+                hi = int(hi, 16)
+                lo = int(lo, 16)
+                #print convert_from_twos_comp(hi, lo)
+                int_form.append(convert_from_twos_comp(hi, lo))
     return int_form
 
 def sort_columns(ints_list):
