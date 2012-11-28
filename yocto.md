@@ -1,6 +1,6 @@
 #Building your own image with Yocto
 
-First, all the available tools are a weird interdependent mismash of each other.
+First, all the available embedded Linux tools are a weird interdependent mismash of each other.
 Each incoporates BitBake and OpenEmbedded at some level. Angstrom and 
 Poky wrap those tools in their own way.  Yocto is the top most layer of all.
 The good news is Yocto is sponsored by the Linux Foundation, so it has a reasonably
@@ -9,6 +9,7 @@ Yocto.  It's just an umbrella documentation site.
 
 If you want to read documentation, start with the
  [Yocto Quick Start](https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html) 
+
 To make an image for the BeagleBone:
 
     ~$ git clone git://git.yoctoproject.org/poky 
