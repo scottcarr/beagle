@@ -52,6 +52,8 @@ To build that smallest bootable image possible run:
     
     ~/poky/beagelbone$ bitbake core-image-minimal
 
+The above command will take several minutes.
+
 The output will be under ~/poky/beaglebone/tmp/deploy/images.  The important
 files are core-image-minimal-beaglebone-20121117162657.rootfs.tar.bz2 and
 uImage.
@@ -66,7 +68,6 @@ To deploy the rootfs image to your SD card, mount the second partion to /media/r
 
     ~/poky/beaglebone/tmp/deploy/images$ sudo tar -xjv -C /media/rootfs -f core-image-minimal*rootfs.tar.bz2
 
-The above command will take several minutes.
 
 To deploy uImage simply copy it to the first partition by any means.
 
