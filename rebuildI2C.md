@@ -141,7 +141,7 @@ If you get back:
 
 You're now running I2C 3 at 400kHz (max speed for the MPU6050).
 
-For instructions on how to run the MPU6050 app go [here]()
+For instructions on how to run the MPU6050 app go [here](MPU6050_app.md)
 
 
 
