@@ -133,6 +133,8 @@ Deploy the boot partition:
 
 Unmount the SD card and eject it. Put the SD card back in the beaglebone and boot it.
 
+It will take a while to boot the first time.
+
 Log into the beaglebone and type:
 
     dmesg | grep i2c
