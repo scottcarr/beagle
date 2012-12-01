@@ -7,6 +7,11 @@ with Angstrom.  Angstrom does have a better default package set though.
 
 ##DISCLAIMER 2 
 
+##Building your own image
+
+Follow this section if you want to build your own image.  If you just want
+to download my images, skip to the next section.
+
 This is a sort of hackish way to accomplish what we need.  Making
 our own layer would be better/more sustainable, but it'd also be a lot more work.
 I'll try to work on that over break.
@@ -107,7 +112,11 @@ Go back to the poky/beaglebone directory and run:
 
     bitbake core-image-lsb-sdk
 
-##Optional: Try the demo image to make sure your hardware works
+##Using a prebuilt image
+
+
+
+##Try the demo image to make sure your hardware works
 
 You can skip this step if you've already got a correctly partitioned SD
 card and your know your hardware setup works.
