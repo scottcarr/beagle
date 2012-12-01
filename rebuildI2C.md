@@ -54,6 +54,31 @@ should look like:
 
     BBMASK = "meta-ti/recipes-misc"
 
+Add the folliwing line to poky/meta/recipes-exteneded/images/core-image-lsb-sdk
+
+    IMAGE_INSTALL += "git vim"
+    # you can add more packages to IMAGE_INSTALL if you want
+
+It should look like:
+    DESCRIPTION = "Basic image without X support suitable for Linux Standard Base \
+    (LSB) implementations. It includes the full meta-toolchain, plus development \
+    headers and libraries to form a standalone SDK."
+
+    IMAGE_FEATURES += "splash tools-sdk dev-pkgs ssh-server-openssh \
+        tools-debug tools-profile tools-testapps debug-tweaks"
+
+
+    IMAGE_INSTALL = "\
+        ${CORE_IMAGE_BASE_INSTALL} \
+        packagegroup-core-basic \
+        packagegroup-core-lsb \
+        kernel-dev \
+        "
+
+    IMAGE_INSTALL += "git"
+
+    inherit core-image
+
 Note: it says you need to do that BBMASK in meta-ti/README, so that's why
 we do it.
 
@@ -113,14 +138,17 @@ your own files and be good-to-go.
 Remove the SD card from the beaglebone and put it back in your computer. 
 
 Mount the first partition (maybe /dev/sdb1) as /mnt/boot
-Mount the second partition (maybe /dev/sdb2) as /mnt/rootfs
+<!--- Mount the second partition (maybe /dev/sdb2) as /mnt/rootfs
+-->
 
 Deploy the rootfs to that partition:
 
     cd poky/beaglebone/tmp/deploy/images
     sudo rm -r /mnt/rootfs/* # clear our the old rootfs
     sudo tar -xjv -C /mnt/rootfs -f core-image-lsb-sdk-beaglebone.tar.bz2
+    sudo tar -xzv -C /mnt/rootfs -f modules-beaglebone.tgz
 
+<---
 Deploy the boot partition:
 
     cd poky/beaglebone/tmp/deploy/images
@@ -130,6 +158,7 @@ Deploy the boot partition:
     sudo cp u-boot.img /mnt/rootfs/boot/
     sudo cp uImage /mnt/boot/
     sudo cp u-boot.img /mnt/rootfs/boot/
+-->
 
 Unmount the SD card and eject it. Put the SD card back in the beaglebone and boot it.
 
