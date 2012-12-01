@@ -7,7 +7,7 @@ with Angstrom.  Angstrom does have a better default package set though.
 
 ##DISCLAIMER 2 
 
-Is is a sort of hackish way to accomplish what we need.  Making
+This is a sort of hackish way to accomplish what we need.  Making
 our own layer would be better/more sustainable, but it'd also be a lot more work.
 I'll try to work on that over break.
 
@@ -54,10 +54,15 @@ should look like:
 
     BBMASK = "meta-ti/recipes-misc"
 
+Note: it says you need to do that BBMASK in meta-ti/README, so that's why
+we do it.
+
 Add the folliwing line to poky/meta/recipes-exteneded/images/core-image-lsb-sdk
 
-    IMAGE_INSTALL += "git vim"
+    IMAGE_INSTALL += "git"
     # you can add more packages to IMAGE_INSTALL if you want
+    # it'll work if poky knows that package, otherwise you'll
+    # get an error when you try to build
 
 It should look like:
     DESCRIPTION = "Basic image without X support suitable for Linux Standard Base \
@@ -78,9 +83,6 @@ It should look like:
     IMAGE_INSTALL += "git"
 
     inherit core-image
-
-Note: it says you need to do that BBMASK in meta-ti/README, so that's why
-we do it.
 
 You need to change something to get the correct I2C speed.  You need
 to edit:
@@ -104,9 +106,6 @@ To:
 Go back to the poky/beaglebone directory and run:
 
     bitbake core-image-lsb-sdk
-
-core-image-lsb-sdk is a basic image that has "Linux System Base" and development
-packages (no GUI).
 
 ##Optional: Try the demo image to make sure your hardware works
 
@@ -137,7 +136,9 @@ your own files and be good-to-go.
 
 Remove the SD card from the beaglebone and put it back in your computer. 
 
-Mount the first partition (maybe /dev/sdb1) as /mnt/boot
+Mount the root file system partition of your SD card (maybe /dev/sdb2) as /mnt/rootfs.
+Loading the Angstrom demo image partitions the SD card for you.  The first
+partition is boot and the second is the root file system.
 <!--- Mount the second partition (maybe /dev/sdb2) as /mnt/rootfs
 -->
 
@@ -169,6 +170,11 @@ Log into the beaglebone and type:
     dmesg | grep i2c
 
 If you get back:
+    [    0.102813]  omap_i2c.1: alias fck already exists
+    [    0.118530] omap_i2c omap_i2c.1: bus 1 rev2.4.0 at 100 kHz
+    [    0.253784]  omap_i2c.3: alias fck already exists
+    [    0.254089] omap_i2c omap_i2c.3: bus 3 rev2.4.0 at 400 kHz
+    [    0.544921] i2c /dev entries driver
 
 You're now running I2C 3 at 400kHz (max speed for the MPU6050).
 
