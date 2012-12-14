@@ -10,3 +10,7 @@ We attached the sensors similarly to how the accelerameters were attached
 to the original turbine.
 
 ![sensors on blade](https://github.com/scottcarr/beagle/blob/master/blade.JPG?raw=true)
+
+![Accelerometer Data](https://github.com/scottcarr/beagle/blob/master/accel.png?raw=true)
+
+![FFT](https://github.com/scottcarr/beagle/blob/master/fft.png?raw=true)
