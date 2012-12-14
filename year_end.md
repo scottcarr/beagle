@@ -13,8 +13,6 @@ to the original turbine.
 
 We collected 10,000 samples per sensor with the wind tunnel running.
 
-<iframe width="560" height="315" src="http://www.youtube.com/embed/eIRiVsIjvmw" frameborder="0" allowfullscreen></iframe>
-
 The data is below:
 
 ![Accelerometer Data](https://github.com/scottcarr/beagle/blob/master/accel.png?raw=true)
