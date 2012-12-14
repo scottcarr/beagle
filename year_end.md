@@ -9,4 +9,4 @@ We put the BeagleBone inside the central cap where the blades come together.
 We attached the sensors similarly to how the accelerameters were attached
 to the original turbine.
 
-![sensors on blade](blade.JPG)
+![sensors on blade](https://github.com/scottcarr/beagle/blob/master/blade.JPG)
