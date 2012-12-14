@@ -21,3 +21,6 @@ The data is below:
 
 In order to validate the data, the next step will be to put out accelerometer
 on the same blade as the original accelerometers and compare the two.
+
+See the [Wind Project Website](http://wind.cs.purdue.edu/doc/report-dec2012/) for
+more pictures and video.
