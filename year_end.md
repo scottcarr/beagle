@@ -7,7 +7,7 @@ two out of three.  Scott will investigate this problem.
 
 One key issue is the mounting of the BeagleBone and sensors.  There is a cap
 on the turbine blades in the middle of the hub.  The BeagleBone can
-fit in the in this space.  Strong mounting that will be resistance to vibration
+fit in the in this space.  Stronger mounting that will resist vibration
 will be a next step.
 
 ![beagle mounting ](https://github.com/scottcarr/beagle/blob/master/beagle.JPG?raw=true)
