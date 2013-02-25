@@ -9,6 +9,10 @@ It uses other DSLs called [Atom](https://github.com/tomahawkins/atom) and
 
 # Concepts
 
+At the highest level a _spec_ defined an set of infinite data streams,
+the operations to perform on the streams, conditions to monitor the streams
+for, and functions to call when those conditions occur.
+
 The main data type is _Stream_, where _Stream_ is an infinite list.  You need
 to specifiy the type of the element so a valid declaration is:
 
