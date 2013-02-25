@@ -47,6 +47,15 @@ of the observed value will be printed for each time step.  The form is:
 Where "description" can be an string.  It's just the name of the column in the
 interpreter output.
 
+And _trigger_ has the form:
+
+    trigger "functionname" (<Stream Bool>) [arguments]
+
+The "_functionname_" function can be a Haskell function or an external C
+function.  The "_<Stream Bool>_" part is the condition to be monitored.  The
+"_[arguments]_" part get passed to "_functionname_" when the trigger fires.
+
+Everything after where is the variables used in the _spec_.
 Typically the _spec_ defines its own _Streams_ and _extern_ _Streams_.  The purpose
 of _extern_ is to model data coming into the monitor from other parts of the
 system.  The code generating the _extern_ _Streams_ and the _trigger_ can be
