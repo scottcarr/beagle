@@ -44,7 +44,7 @@ of the observed value will be printed for each time step.  The form is:
 
     observer "description" (variable_name)
 
-Where "description" can be an string.  It's just the name of the column in the
+Where _description_ can be an string.  It's just the name of the column in the
 interpreter output.
 
 And _trigger_ has the form:
