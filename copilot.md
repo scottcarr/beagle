@@ -53,7 +53,7 @@ And _trigger_ has the form:
 
 The _functionname_ function can be a Haskell function or an external C
 function.  The _Stream Bool_ part is the condition to be monitored.  The
-_[arguments]_ part get passed to _functionname_ when the trigger fires.
+_[arguments]_ get passed to _functionname_ when the trigger fires.
 
 Everything after _where_ are the variables used in the _spec_.
 Typically the _spec_ defines its own _Streams_ and _extern_ _Streams_.  The purpose
