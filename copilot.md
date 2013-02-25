@@ -55,11 +55,10 @@ The "_functionname_" function can be a Haskell function or an external C
 function.  The "_<Stream Bool>_" part is the condition to be monitored.  The
 "_[arguments]_" part get passed to "_functionname_" when the trigger fires.
 
-Everything after where is the variables used in the _spec_.
+Everything after _where_ are the variables used in the _spec_.
 Typically the _spec_ defines its own _Streams_ and _extern_ _Streams_.  The purpose
 of _extern_ is to model data coming into the monitor from other parts of the
-system.  The code generating the _extern_ _Streams_ and the _trigger_ can be
-external C functions.
+system.  The code generating the _extern_ _Streams_ can be external C functions.
 
 In this example the _Stream_ representing the data input is called _temps_:
 
@@ -70,7 +69,7 @@ In this example the _Stream_ representing the data input is called _temps_:
   tempin = 100.0:100.0:100.0:repeat 103.0 -- this could be an extern C function
 
 The reason _temps_ has _max_ 3 times at the beginning is just to give it an
-initial value.
+initial value.  It'll make sense once you see how the condition _Stream_ is defined.
 
 The _Stream_ that represents the condition to be monitored is called _overTempRise_:
 
@@ -78,12 +77,15 @@ The _Stream_ that represents the condition to be monitored is called _overTempRi
   overTempRise = drop 2 temps > (2.3 + temps)
 
 In the example, we only want the monitor to run when the engine is running,
-so another _Stream_ is defined as _isrunning_:
+so another _Stream_ is defined as _running_:
 
   running :: Stream Bool
   running = extern "running" (Just (repeat True))
 
+Here, _running_ is always _True_ but it could be something more exciting.
+
 The complete program is:
+
     import Language.Copilot
     import qualified Prelude as P
 
