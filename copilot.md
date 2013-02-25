@@ -62,25 +62,25 @@ system.  The code generating the _extern_ _Streams_ can be external C functions.
 
 In this example the _Stream_ representing the data input is called _temps_:
 
-  max = 500 -- maximum engine temperature
-  temps :: Stream Float
-  temps = [max, max, max] ++ temp
-  temp = extern "temp" (Just tempin)
-  tempin = 100.0:100.0:100.0:repeat 103.0 -- this could be an extern C function
+    max = 500 -- maximum engine temperature
+    temps :: Stream Float
+    temps = [max, max, max] ++ temp
+    temp = extern "temp" (Just tempin)
+    tempin = 100.0:100.0:100.0:repeat 103.0 -- this could be an extern C function
 
 The reason _temps_ has _max_ 3 times at the beginning is just to give it an
 initial value.  It'll make sense once you see how the condition _Stream_ is defined.
 
 The _Stream_ that represents the condition to be monitored is called _overTempRise_:
 
-  overTempRise :: Stream Bool
-  overTempRise = drop 2 temps > (2.3 + temps)
+    overTempRise :: Stream Bool
+    overTempRise = drop 2 temps > (2.3 + temps)
 
 In the example, we only want the monitor to run when the engine is running,
 so another _Stream_ is defined as _running_:
 
-  running :: Stream Bool
-  running = extern "running" (Just (repeat True))
+    running :: Stream Bool
+    running = extern "running" (Just (repeat True))
 
 Here, _running_ is always _True_ but it could be something more exciting.
 
