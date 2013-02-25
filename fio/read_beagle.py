@@ -13,6 +13,7 @@ def filter_same(data):
 
 #x = np.loadtxt("beagle_data3.csv", delimiter=',')
 x = np.loadtxt("sensor0.csv", delimiter=',')
+x = np.loadtxt("beagle_data_ubuntu.csv", delimiter=',')
 ion()
 figure(1)
 clf()
