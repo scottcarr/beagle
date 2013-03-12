@@ -111,8 +111,40 @@ void test_10_sec()
     close(f);
 }
 
+void test_100_sec()
+{
+    int n = 100000;
+    int i = 0;
+    sample s[n];
+    fftwf_complex *in, *out;
+    fftwf_plan p;
+    struct timespec t0, t1;
+
+    in = (fftwf_complex*) fftwf_malloc(sizeof(fftwf_complex)*n);
+    out = (fftwf_complex*) fftwf_malloc(sizeof(fftwf_complex)*n);
+    FILE* f = fopen("beagle_data_ubuntu.csv", "r");
+    if (f == NULL) {
+        printf("file open failed\n");
+    }
+    while (0 == readSample(f, s + i++)) 
+        ;
+    for (i = 0; i < 100; i++) {
+        compact_on_accelx(s, in+1000*i, 1000);
+    }
+    p = fftwf_plan_dft_1d(n, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
+    clock_gettime(CLOCK_REALTIME, &t0);
+    fftwf_execute(p);
+    clock_gettime(CLOCK_REALTIME, &t1);
+    printf("time 100,000 samples (ns): %ld\n", t1.tv_nsec - t0.tv_nsec);
+    fftwf_destroy_plan(p);
+    fftwf_free(in);
+    fftwf_free(out);
+    close(f);
+}
+
 int main(int argc, char* argv[]) 
 {
     test_1_sec();
     test_10_sec();
+    test_100_sec();
 }
